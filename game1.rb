@@ -14,5 +14,7 @@ require 'player'
 require 'googie'
 require 'game_over'
 require 'pulsating_text'
+require 'collectible'
+require 'gold_coin'
 
 Game.new.show

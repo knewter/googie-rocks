@@ -1,7 +1,8 @@
 class Player < Chingu::GameObject  
   trait :bounding_box, :debug => false
   traits :timer, :collision_detection, :velocity
-  attr_accessor :last_x, :last_y, :direction, :lives
+
+  attr_accessor :last_x, :last_y, :direction, :lives, :score
   
   def setup
     self.input = {  [:holding_left, :holding_a] => :move_left, 
@@ -12,6 +13,7 @@ class Player < Chingu::GameObject
     @speed = 3
     @last_x, @last_y = @x, @y
     @lives = 3
+    @score = 0
     
     self.acceleration_y = 0.5
     update
@@ -66,15 +68,23 @@ class Player < Chingu::GameObject
       @direction = [@x - @last_x, @y - @last_y]
     end
 
-    each_collision(Block, GrassBlock) do |player, block|
-      if player.collides_horizonally_with?(block) 
-        @x = @last_x
+    begin
+      each_collision(Block, GrassBlock) do |player, block|
+        if player.collides_horizonally_with?(block) 
+          @x = @last_x
+        end
+        if player.collides_vertically_with?(block)
+          @jumping = false
+          @y = @last_y
+          self.velocity_y = 0
+        end
       end
-      if player.collides_vertically_with?(block)
-        @jumping = false
-        @y = @last_y
-        self.velocity_y = 0
+
+      each_collision(GoldCoin) do |player, coin|
+        coin.destroy
+        player.score += coin.points
       end
+    rescue
     end
 
     @last_x, @last_y = @x, @y

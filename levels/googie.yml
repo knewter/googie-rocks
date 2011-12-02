@@ -60,27 +60,43 @@
     :y: 320.0
     :angle: 0
     :zorder: 100
-    :factor_x: 1
-    :factor_y: 1
+    :factor_x: 1.0
+    :factor_y: 1.0
     :alpha: 255
 - GrassBlock: 
     :x: 416.0
     :y: 256.0
     :angle: 0
     :zorder: 100
-    :factor_x: 1
-    :factor_y: 1
+    :factor_x: 1.0
+    :factor_y: 1.0
     :alpha: 255
 - GrassBlock: 
     :x: 480.0
     :y: 256.0
     :angle: 0
     :zorder: 100
-    :factor_x: 1
-    :factor_y: 1
+    :factor_x: 1.0
+    :factor_y: 1.0
     :alpha: 255
 - GrassBlock: 
     :x: 544.0
+    :y: 256.0
+    :angle: 0
+    :zorder: 100
+    :factor_x: 1.0
+    :factor_y: 1.0
+    :alpha: 255
+- GrassBlock: 
+    :x: 608.0
+    :y: 256.0
+    :angle: 0
+    :zorder: 100
+    :factor_x: 1.0
+    :factor_y: 1.0
+    :alpha: 255
+- GrassBlock: 
+    :x: 672.0
     :y: 256.0
     :angle: 0
     :zorder: 100
@@ -88,8 +104,40 @@
     :factor_y: 1
     :alpha: 255
 - GrassBlock: 
-    :x: 608.0
+    :x: 736.0
     :y: 256.0
+    :angle: 0
+    :zorder: 100
+    :factor_x: 1
+    :factor_y: 1
+    :alpha: 255
+- GrassBlock: 
+    :x: 800.0
+    :y: 256.0
+    :angle: 0
+    :zorder: 100
+    :factor_x: 1
+    :factor_y: 1
+    :alpha: 255
+- GoldCoin: 
+    :x: 544.0
+    :y: 192.0
+    :angle: 0
+    :zorder: 100
+    :factor_x: 1
+    :factor_y: 1
+    :alpha: 255
+- GoldCoin: 
+    :x: 640.0
+    :y: 192.0
+    :angle: 0
+    :zorder: 100
+    :factor_x: 1
+    :factor_y: 1
+    :alpha: 255
+- GoldCoin: 
+    :x: 736.0
+    :y: 192.0
     :angle: 0
     :zorder: 100
     :factor_x: 1

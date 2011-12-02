@@ -1,9 +1,9 @@
 class Game < Chingu::Window
   def initialize
-    super(800, 600, true)            # leave it blank and it will be 800,600,non fullscreen
+    super(800, 600, false)            # leave it blank and it will be 800,600,non fullscreen
 
     switch_game_state(Googie)
-    self.input = { :escape => :exit } # exits example on Escape
+    self.input = { :escape => :exit, :holding_p => :game_over } # exits example on Escape
   end
   
   def update
