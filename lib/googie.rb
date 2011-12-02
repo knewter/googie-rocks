@@ -7,19 +7,20 @@ class Googie < GameState
   def initialize(options = {})
     super
 
+    @game_area   = [10000, 1400]
     @spawn_point = [200, 100]
     
     self.input = { :escape => :exit, :e => :edit }
 
     self.viewport.lag = 0.8                         # 0 = no lag, 0.99 = a lot of lag.
-    self.viewport.game_area = [0, 0, 10000, 1400]   # Viewport restrictions, full "game world/map/area"
+    self.viewport.game_area = [0, 0, @game_area[0], @game_area[1]]   # Viewport restrictions, full "game world/map/area"
     
     @file = File.join(ROOT, "levels", self.filename + ".yml")
     load_game_objects(:file => @file)
 
     @player = Player.create(:x => @spawn_point[0], :y => @spawn_point[1], :image => Image["gfx/player.png"])
 
-    @lives_text = Text.create("Lives:", :x => viewport.x, :y => viewport.y, :color => Gosu::Color::WHITE)
+    @lives_text = Text.create("Lives:", :x => viewport.x, :y => viewport.y, :color => Color::WHITE)
   end
 
   def edit
@@ -37,7 +38,12 @@ class Googie < GameState
     # Die if you fall below the game area
     if @player.y >= viewport.game_area.height
       @player.die!
-      @player.warp(spawn_point)
+
+      if @player.game_over?
+        $window.game_over
+      else
+        @player.warp(spawn_point)
+      end
     end
 
     super

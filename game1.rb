@@ -12,5 +12,7 @@ require 'gameobject_ext'
 require 'block'
 require 'player'
 require 'googie'
+require 'game_over'
+require 'pulsating_text'
 
 Game.new.show

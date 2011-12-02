@@ -52,6 +52,10 @@ class Player < Chingu::GameObject
   def die!
     @lives -= 1
   end
+
+  def game_over?
+    @lives == 0
+  end
   
   # We don't need to call super() in update().
   # By default GameObject#update is empty since it doesn't contain any gamelogic to speak of.
