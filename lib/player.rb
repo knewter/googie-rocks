@@ -9,6 +9,13 @@ class Player < Chingu::GameObject
                     [:holding_right, :holding_d] => :move_right,
                     [:holding_up, :holding_w, :holding_space] => :jump
                   }
+
+    # Load the full animation from tile-file media/droid.bmp
+    @animation = Chingu::Animation.new(:file => "matthew_jumping_animation.png", :width => 190, :height => 210, :delay => 200)
+    @animation.frame_names = { :standing => 0..0, :walking => 1..2, :jumping => 3..6 }
+    
+    # Start out by animation frames (contained by @animation[:jumping])
+    @frame_name = :standing
     
     @speed = 3
     @last_x, @last_y = @x, @y
@@ -36,15 +43,18 @@ class Player < Chingu::GameObject
   end
     
   def move_left
+    @frame_name = :walking
     move(-@speed, 0)
   end
 
   def move_right
+    @frame_name = :walking
     move(@speed, 0)
   end
 
   def jump
     unless @jumping
+      @frame_name = :jumping
       self.velocity_y = -10
       @jumping = true
     end
@@ -62,6 +72,10 @@ class Player < Chingu::GameObject
   # We don't need to call super() in update().
   # By default GameObject#update is empty since it doesn't contain any gamelogic to speak of.
   def update
+    # Move the animation forward by fetching the next frame and putting it into @image
+    # @image is drawn by default by GameObject#draw
+    @image = @animation[@frame_name].next
+    
     if @x == @last_x && @y == @last_y
     else
       # Save the direction to use with bullets when firing
@@ -87,6 +101,8 @@ class Player < Chingu::GameObject
     rescue
     end
 
+    # Default to the standing frame
+    @frame_name = :standing
     @last_x, @last_y = @x, @y
   end
 end
