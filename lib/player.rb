@@ -57,6 +57,7 @@ class Player < Chingu::GameObject
       @frame_name = :jumping
       self.velocity_y = -10
       @jumping = true
+      Sound["woohoo.wav"].play(0.5)
     end
     #move(0, -@speed*3)
   end
@@ -96,6 +97,7 @@ class Player < Chingu::GameObject
 
       each_collision(GoldCoin) do |player, coin|
         coin.destroy
+        Sound["yesss.wav"].play(0.5)
         player.score += coin.points
       end
     rescue

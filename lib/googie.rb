@@ -22,6 +22,9 @@ class Googie < GameState
 
     @player = Player.create(:x => @spawn_point[0], :y => @spawn_point[1], :zorder => 1000)
 
+    @background_music = Song["matthew_doo_doop.wav"]
+    @background_music.play(true)
+
     @lives_text = Text.create "Lives:", :x => viewport.x, :y => viewport.y, :size => hud_size
     @score_text = Text.create "Score:", :x => viewport.x + 200, :y => viewport.y, :size => hud_size
   end
